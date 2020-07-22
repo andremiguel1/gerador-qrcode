@@ -1,0 +1,27 @@
+﻿@model List<KeyValuePair<string, Byte[]>>
+@{
+    Layout = "_Layout";
+}
+
+<div id="content">
+    <h1>QRCodes gerados</h1>
+    <p>Lista dos QR codes gerados</p>
+    <div class="d-flex flex-row flex-wrap justify-content-lg-start" id="viewContent">
+        @foreach (KeyValuePair<string, Byte[]> k in Model)
+        {
+            <div class="card w-25">
+                <div class="card-body text-center">
+                    <figure class="figure">
+                        <img src="@String.Format("data:image/png;base64,{0}",
+                            Convert.ToBase64String(k.Value))" class="figure-img img-fluid rounded" alt="...">
+                    </figure>
+                </div>
+                <div class="card-footer">
+                    <p class="text-center">
+                        @k.Key
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
